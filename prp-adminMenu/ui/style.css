@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+}
+
+.admin-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 80vh;
+  background-color: #212529;
+}
+
+.admin-header {
+  width: 50vw;
+  height: 3vh;
+  background-color: #383e44;
+}
+
+.admin-rich-text {
+  font-weight: bold;
+  font-size: 0.9vw;
+  color: #dc3545;
+}
+
+.admin-header-text {
+  font-size: 0.875vw;
+  color: #fff;
+  text-align: center;
+}
+
+.admin-data-text {
+  font-weight: normal;
+  font-size: 0.875vw;
+  color: #fff;
+  padding-top: 0.3vw;
+  padding-left: 0.3vw;
+}
+
+.admin-controls,
+.admin-main-controls {
+  width: 25vw;
+  padding: 1vw;
+  margin-left: 25vw;
+}
+
+.admin-player-identifiers {
+  width: 25vw;
+  padding: 1vw;
+  margin-left: 25vw;
+}
+
+.admin-data {
+  display: inline-block;
+  width: 50vw;
+  height: 3.5vh;
+  background-color: #494f55;
+  color: white;
+}
+
+.admin-players {
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 1vw;
+  width: 25vw;
+  height: 72vh;
+}
+
+.admin-player-data {
+  width: 23vw;
+  height: 25vh;
+  padding: 1vw;
+  margin-left: 26vw;
+  text-align: center;
+}
+
+.admin-players::-webkit-scrollbar {
+  width: 7px;
+  background: #212529 !important;
+}
+
+.admin-players::-webkit-scrollbar-thumb {
+  width: 7px;
+  background: #494f55 !important;
+}
+
+.selected {
+  background-color: #2d2f31 !important;
+}
+
+#exitSpectate {
+  position: relative;
+  right: -55.3%;
+  top: -70%;
+  width: 20%;
+  height: 1.75vw;
+}
+
+#closeMenu {
+  position: relative;
+  right: -55%;
+  top: -70%;
+  width: 20%;
+  height: 1.75vw;
+}

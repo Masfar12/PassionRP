@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>PRP Tunerchip</title>
+</head>
+    <body>
+        <div class="container">
+            <img class="screen-frame" src="./screen-frame.png" alt="screen-frame">
+            <div class="tunerchip-block">
+                <div class="tunerchip-software">
+                    <div class="tunerchip-software-boost-slider">
+                        <span id="slider-titel">Boost <span id="normalhigh">(Default | Normal | High)</span></span>
+                        <input type="range" min="1" max="9" value="5" class="slider" id="boost-slider">
+                    </div>
+
+                    <div class="tunerchip-software-acceleration-slider">
+                        <span id="slider-titel">Acceleration <span id="normalhigh">(Default | Normal | Faster)</span></span>
+                        <input type="range" min="1" max="9" value="5" class="slider" id="acceleration-slider">
+                    </div>
+
+                    <div class="tunerchip-software-gear-slider">
+                        <span id="slider-titel">Gear Change <span id="normalhigh">(Default | Normal | Faster)</span></span>
+                        <input type="range" min="1" max="9" value="5" class="slider" id="gear-slider">
+                    </div>
+
+                    <div class="tunerchip-software-breaking-slider">
+                        <span id="slider-titel">Breaking <span id="normalhigh">(Default | Rear | Front)</span></span>
+                        <input type="range" min="1" max="9" value="5" class="slider" id="breaking-slider">
+                    </div>
+
+                    <div class="tunerchip-software-drivetrain-slider">
+                        <span id="slider-titel">Drivetrain <span id="normalhigh">(Default | RWD | AWD | FWD)</span></span>
+                        <input type="range" min="1" max="9" value="5" class="slider" id="drivetrain-slider">
+                    </div>
+
+                    <div class="tunerchip-software-buttons">
+                        <div class="tunerchip-btn" id="save"><p>Apply</p></div>
+                        <div class="tunerchip-btn" id="neon"><p>Neon</p></div>
+                        <div class="tunerchip-btn" id="headlights"><p>Headlights</p></div>
+                        <div class="tunerchip-btn" id="cancel"><p>Close</p></div>
+                        <div class="tunerchip-btn" id="reset"><p>Reset</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="neon-block">
+                <div class="tunerchip-software">
+
+                    <div class="neon-software-neon-slider">
+                        <span id="slider-titel">Neon Lights<span id="normalhigh">(Off | On)</span></span>
+                        <input type="range" min="0" max="1" value="1" class="slider" id="neon-slider">
+                    </div>
+
+                    <div class="neon-software-color-pallete">
+                        <p>Neon Color (RGB)</p>
+                        <input type="number" class="color-code" id="color-r" placeholder="R">
+                        <input type="number" class="color-code" id="color-g" placeholder="G">
+                        <input type="number" class="color-code" id="color-b" placeholder="B">
+                    </div>
+
+                    <div class="neon-software-color-pallete-presets">
+                        <p>Color Presets</p>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(0, 217, 255);" data-r="0" data-g="217" data-b="255"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(57, 143, 255);" data-r="57" data-g="143" data-b="255"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(0, 0, 0);" data-r="20" data-g="0" data-b="255"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(30, 255, 0);" data-r="30" data-g="255" data-b="0"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 255, 116);" data-r="255" data-g="255" data-b="116"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 115, 0);" data-r="255" data-g="115" data-b="0"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 0, 0);" data-r="255" data-g="0" data-b="0"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 1, 192);" data-r="255" data-g="1" data-b="92"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(141, 1, 255);" data-r="141" data-g="1" data-b="255"></div>
+                    </div>
+
+                    <div class="tunerchip-software-buttons">
+                        <div class="tunerchip-btn" id="save-neon"><p>Apply</p></div>
+                        <div class="tunerchip-btn" id="tuning"><p>Tuning</p></div>
+                        <div class="tunerchip-btn" id="headlights"><p>Headlights</p></div>
+                        <div class="tunerchip-btn" id="cancel"><p>Close</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="headlights-block">
+                <div class="tunerchip-software">
+                    <div class="headlight-software-headlight-slider">
+                        <span id="slider-titel">Toggle Color<span id="normalhigh">(Off | On)</span></span>
+                        <input type="range" min="0" max="1" value="1" class="slider" id="headlight-slider">
+                    </div>
+
+                     <div class="headlights-software-color-pallete-presets">
+                        <p>Headlight Color</p>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(139, 199, 255);"   data-value="-1"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 255, 255);"   data-value="0"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(0, 0, 255);"   data-value="1"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(85, 110, 255);"  data-value="2"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(64, 224, 144);"  data-value="3"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(94, 255, 0);"  data-value="4"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 242, 57);"  data-value="5"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(172, 169, 15);"  data-value="6"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 153, 0);"   data-value="7"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 0, 0);"   data-value="8"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 80, 188);"  data-value="9"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(255, 0, 255);" data-value="10"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(119, 0, 255);"  data-value="11"></div>
+                        <div class="neon-software-color-pallete-color" style="background-color: rgb(0, 0, 0);"  data-value="12"></div>
+                    </div>
+
+                    <div class="headlights-software-color-pallete-currentcolor">
+                       <p>Selected Color</p>
+                       <div class="neon-software-color-pallete-color-current"></div>
+                   </div>
+
+                    <div class="tunerchip-software-buttons">
+                        <div class="tunerchip-btn" id="save-headlights"><p>Apply</p></div>
+                        <div class="tunerchip-btn" id="tuning"><p>Tuning</p></div>
+                        <div class="tunerchip-btn" id="neon"><p>Neon</p></div>
+                        <div class="tunerchip-btn" id="cancel"><p>Close</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>

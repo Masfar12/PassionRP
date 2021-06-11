@@ -1,0 +1,169 @@
+
+html {
+  overflow: hidden;
+}
+
+.browserin {
+  background-color:white;
+  background-size:100% 100%;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.warrants-container {
+  background-color:white;
+  background-size:100% 100%;
+  width: 90%;
+  height: 90%;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  opacity:0;
+  display:block;
+  z-index: 9999999;
+  position:absolute;
+  top:5%;
+  left:5%;
+}
+
+.public-container {
+  background-color:white;
+  background-size:100% 100%;
+  width: 90%;
+  height: 90%;
+  border-radius: 2px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  opacity:0;
+  z-index: 9999999;
+  position:absolute;
+  top:5%;
+  left:5%;
+}
+
+.body {
+  width: 90%;
+  height: 90%;
+  display:block;
+  opacity:0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.public-records {
+  background-color:white;
+  background-size:100% 100%;
+  width: 90%;
+  height: 90%;
+  border-radius: 2px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  opacity:0;
+  z-index: 9999999;
+  position:absolute;
+  top:5%;
+  left:5%;
+  background: url('./background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+:root {
+  --main-label-color: 156,136,255;  
+}
+::-webkit-scrollbar
+{
+	width: 4px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: rgba(156,136,255, 1);
+}
+
+.public-records:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:0;
+  background-color: rgba(0,0,0,0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.public-records-inner {
+  width: 100%;
+  height: 55vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 1rem 2rem 5rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.public-records * {
+  font-family: 'Tahoma', sans-serif;
+}
+.public-records .public-records-inner {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+.public-records h1 {
+  font-size: 48px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+.public-records .public-records-inner .flexTable {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 3em 0;
+  padding: 0;
+}
+.public-records .public-records-inner .flexTable .flexTable-cell {
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  width: 100%;
+  padding: 0.8em 1.2em;
+  overflow: hidden;
+  list-style: none;
+  border: solid 1px #333;
+  background: rgba(112,128,144,0.2);
+  color: #fff;
+  font-size: 0.875rem
+}
+.public-records .public-records-inner .flexTable .flexTable-cell:nth-child(-n+5) {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+.public-records .public-records-inner .flexTable--2cols > .flexTable-cell {
+  width: 50%;
+}
+.public-records .public-records-inner .flexTable--3cols > .flexTable-cell {
+  width: 33.33%;
+}
+.public-records .public-records-inner .flexTable--4cols > .flexTable-cell {
+  width: 25%;
+}
+.public-records .public-records-inner .flexTable--5cols > .flexTable-cell {
+  width: 20%;
+}
+.public-records .public-records-inner .flexTable--6cols > .flexTable-cell {
+  width: 16.6%;
+}

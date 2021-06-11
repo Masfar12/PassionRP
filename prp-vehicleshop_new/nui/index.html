@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>prp_vehicleshop</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
+
+</head>
+<body style="display: none;">
+  <input 
+    type="text" 
+    id="vehiclespage-and-catalog-search-bar" 
+    placeholder="Search" 
+    spellcheck="false"
+  >
+<!-- partial:index.partial.html -->
+  <nav class="menu" tabindex="0">
+    <div class="smartphone-menu-trigger"></div>
+    <header class="avatar">
+      <img src="https://newton.is-fi.re/AS3h48U.png" />
+      <h2>PassionRP</h2>
+    </header>
+    <ul>
+      <li tabindex="0" class="icon-dashboard" onclick="openpage('dashboard'); toggleSearchBar(false);" id = "dashboardtab" style="display: none;"><span class="spanside">Dashboard</span></li>
+      <li tabindex="0" class="icon-customers" onclick="openpage('customers'); toggleSearchBar(false);" id = "customerstab" style="display: none;"><span class="spanside">Customers</span></li>
+      <li tabindex="0" class="icon-car" onclick="openpage('carssoldtable'); toggleSearchBar(false);" id = "carssoldtabletab" style="display: none;"><span class="spanside">Cars Sold</span></li>
+      <li tabindex="0" class="icon-settings" onclick="openpage('vehiclespage'); toggleSearchBar(true);" id = "vehiclespagetab" style="display: none;"><span class="spanside">Vehicles</span></li>
+      <li tabindex="0" class="icon-catalog" onclick="openpage('catalogpage'); toggleSearchBar(true);"><span class="spanside">Catalog</span></li>
+      <li tabindex="0" class="icon-users" onclick="openpage('bossmenu'); toggleSearchBar(false);" id="bosstab" style="display: none;"><span class="spanside">Boss</span></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="cards animated fadeInDownBig" id="vehiclespage" style="overflow-y: scroll; overflow-x: hidden; padding-bottom: 22vh;">
+      
+
+    </div>
+
+    <div class="cards animated fadeInDownBig" id="catalogpage" style="overflow-y: scroll; overflow-x: hidden; padding-bottom: 22vh;">
+      
+
+    </div>
+
+    <div class="containerdashboard" id="dashboard">
+      <div class="rowdashboard">
+        <div class="col-md-4" >
+          <h1><span class="counter" id="customersnum"></span></h1>
+          <h3>Customers</h3>
+          <i class="fa fa-users contactsi"></i>
+        </div> 
+        <div class="col-md-4">
+          <h1><span class="counter" id="carssold"></span></h1>
+          <h3>Cars Sold</h3>
+          <i class="fa fa-desktop contactsi"></i>
+        </div>
+        <div class="col-md-4">
+          <h1><span class="counter" id="earned"></span></h1>
+          <h3>Earned Money</h3>
+          <i class="fa fa-money contactsi"></i>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="customers" class="animated fadeInDownBig" >
+      <!--for demo wrap-->
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Model</th>
+              <th>PLATE</th>
+              <th>Price / week</th>
+              <th>PAID</th>
+              <th>BUTTONS</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody id="tbodycustomers">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="carssoldtable" class="animated fadeInDownBig" >
+      <!--for demo wrap-->
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Model</th>
+              <th>PLATE</th>
+              <th>STOCK PRICE</th>
+              <th>PRICE SOLD</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody id="tbodycarssold">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bossMenu animated fadeInDownBig" id="bossmenu">
+      <div style="display: flex; margin-left: 22%; width: 100%;" >
+        <div class="companymoneyboss">
+          <div style="width: 100%; height: 50%; background: #D82123; border-radius: 5px 5px 0 0; margin-top: -16px;">
+            <p class="cmoneytittle">Take Money</p>
+          </div>
+          <span style="display: flex;">
+            <input class="cmoneynumberimput" placeholder="Insert Amount" id="takemoney">
+            <button class="cmoneynumberbtn cmoneybtn" onclick="removemoneycmp()">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </span>
+        </div>
+
+        <div class="companymoneyboss">
+          <div style="width: 100%; height: 50%; background: #D82123; border-radius: 5px 5px 0 0; margin-top: -16px;">
+            <p class="cmoneytittle">Company Money</p>
+          </div>
+          <p class="cmoneynumber" id="cmoney"></p>
+        </div>
+
+        <div class="companymoneyboss">
+          <div style="width: 100%; height: 50%; background: #D82123; border-radius: 5px 5px 0 0; margin-top: -16px;">
+            <p class="cmoneytittle">Add Money</p>
+          </div>
+          <span style="display: flex;">
+            <button class="cmoneynumberbtn2 cmoneybtn" onclick="addmoneycmp()">
+              <i class="fa fa-arrow-left"></i>
+            </button>
+            <input class="cmoneynumberimput2" placeholder="Insert Amount" id="addmoney">
+          </span>
+        </div>
+
+        <div class="companyjobboss">
+          <div style="width: 100%; height: 50%; background: #D82123; border-radius: 5px 5px 0 0; margin-top: -16px;">
+            <p class="cmoneytittle">Add New Employer</p>
+          </div>
+          <span style="display: flex;">
+            <input class="cmoneyjobimput" placeholder="Insert the ID of the player..." id="employername">
+            <button class="cmoneyjobbtn cmoneybtn" onclick="addemrow()">
+              <i class="fa fa-arrow-down"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="bosstable">
+        <div class="empregados-tittle">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Grade</th>
+                <th>Salary</th>
+                <th>BUTTONS</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="empregados-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody id="tbodyemployers">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+<!-- partial -->
+  <script>
+    var lastpage = "dashboard"
+    function openpage(id) {
+      $("#" + lastpage).css("display", "none");
+      lastpage = id;
+      $("#" + id).css("display", "block");
+    }
+
+    function deleteroe(id){
+      $("#" + id +"_tr").addClass("animated fadeOut");
+      var plate = id
+      $.post('http://prp-vehicleshop_new/removecustomer', JSON.stringify({plate: plate}));2
+      setTimeout(function(){ $("#" + id +"_tr").html(""); }, 1000)
+    }
+
+    function deleterow(id){
+      $("#" + id +"_tr").addClass("animated fadeOut");
+      setTimeout(function(){ $("#" + id +"_tr").html(""); }, 1000)
+      var name = id.replace("_Em","");
+      $.post('http://prp-vehicleshop_new/removeemployer', JSON.stringify({name: name}));2
+    }
+
+    function addemrow(){
+      var idplayer = $("#employername").val();
+      $.post('http://prp-vehicleshop_new/addemployer', JSON.stringify({id: idplayer}));2
+    }
+
+    function addmoneycmp(){
+      var ammount = $("#addmoney").val();
+      $("#addmoney").text("");
+      $.post('http://prp-vehicleshop_new/addmoneycmp', JSON.stringify({amount: ammount}));2
+    }
+    
+    function removemoneycmp(){
+      var ammount = $("#takemoney").val();
+      $("#takemoney").text("");
+      $.post('http://prp-vehicleshop_new/removemoneycmp', JSON.stringify({amount: ammount}));2
+    }
+
+    function BuyCar(model){
+      setTimeout(function(){
+        $.post('http://prp-vehicleshop_new/buycompanycar', JSON.stringify({model: model}));2
+      }, 1000)
+    }
+
+    function TestCar(model){
+      setTimeout(function(){
+        $.post('http://prp-vehicleshop_new/testdrivecar', JSON.stringify({model: model}));2
+      }, 1000)
+    }
+
+
+    function addnewemployer(){
+      var targetname = $("#employername").val();
+      $.post('http://prp-vehicleshop_new/setnewemployerjob', JSON.stringify({target: targetname.replace(" ","_")}));2
+    }
+
+    function toggleSearchBar(toggle){
+      if (toggle){
+        $("#vehiclespage-and-catalog-search-bar").css("display", "block")
+      } else {
+        $("#vehiclespage-and-catalog-search-bar").css("display", "none")
+      }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
+  <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/jquery.counterup/1.0/jquery.counterup.min.js'></script>
+</body>
+</html>

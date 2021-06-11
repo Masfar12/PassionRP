@@ -1,0 +1,166 @@
+local requiredItemsShowed = false
+local requiredItemsShowed2 = false
+
+Citizen.CreateThread(function()
+    Citizen.Wait(2000)
+    local requiredItems = {
+        [1] = {name = PRPCore.Shared.Items["security_card_01"]["name"], image = PRPCore.Shared.Items["security_card_01"]["image"]},
+    }
+
+    local requiredItems2 = {
+        [1] = {name = PRPCore.Shared.Items["thermite"]["name"], image = PRPCore.Shared.Items["thermite"]["image"]},
+    }
+    while true do
+        local ped = GetPlayerPed(-1)
+        local pos = GetEntityCoords(ped)
+        local inRange = false
+        if PRPCore ~= nil then
+            if GetDistanceBetweenCoords(pos, Config.BigBanks["paleto"]["coords"]["x"], Config.BigBanks["paleto"]["coords"]["y"], Config.BigBanks["paleto"]["coords"]["z"]) < 20.0 then
+                inRange = true
+                if not Config.BigBanks["paleto"]["isOpened"] then
+                    local dist = GetDistanceBetweenCoords(pos, Config.BigBanks["paleto"]["coords"]["x"], Config.BigBanks["paleto"]["coords"]["y"], Config.BigBanks["paleto"]["coords"]["z"])
+                    if dist < 1 then
+                        if not requiredItemsShowed then
+                            requiredItemsShowed = true
+                            TriggerEvent('inventory:client:requiredItems', requiredItems, true)
+                        end
+                    else
+                        if requiredItemsShowed then
+                            requiredItemsShowed = false
+                            TriggerEvent('inventory:client:requiredItems', requiredItems, false)
+                        end
+                    end
+                end
+                if Config.BigBanks["paleto"]["isOpened"] then
+                    for k, v in pairs(Config.BigBanks["paleto"]["lockers"]) do
+                        local lockerDist = GetDistanceBetweenCoords(pos, Config.BigBanks["paleto"]["lockers"][k].x, Config.BigBanks["paleto"]["lockers"][k].y, Config.BigBanks["paleto"]["lockers"][k].z)
+                        if not Config.BigBanks["paleto"]["lockers"][k]["isBusy"] then
+                            if not Config.BigBanks["paleto"]["lockers"][k]["isOpened"] then
+                                if lockerDist < 5 then
+                                    DrawMarker(2, Config.BigBanks["paleto"]["lockers"][k].x, Config.BigBanks["paleto"]["lockers"][k].y, Config.BigBanks["paleto"]["lockers"][k].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.1, 0.05, 255, 255, 255, 255, false, false, false, 1, false, false, false)
+                                    if lockerDist < 0.5 then
+                                        DrawText3Ds(Config.BigBanks["paleto"]["lockers"][k].x, Config.BigBanks["paleto"]["lockers"][k].y, Config.BigBanks["paleto"]["lockers"][k].z + 0.3, '[E] Break safe')
+                                        if IsControlJustPressed(0, 38) then
+                                            if CurrentCops >= Config.MinimumPaletoPolice then
+                                                openLocker("paleto", k)
+                                                TriggerServerEvent('prp-hud:Server:GainStress', 10)
+                                            else
+                                                PRPCore.Functions.Notify("Not enough Police", "error")
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            if GetDistanceBetweenCoords(pos, Config.BigBanks["paleto"]["thermite"][1]["x"], Config.BigBanks["paleto"]["thermite"][1]["y"], Config.BigBanks["paleto"]["thermite"][1]["z"], true) < 10.0 then
+                inRange = true
+                if not Config.BigBanks["pacific"]["thermite"][1]["isOpened"] then
+                    local dist = GetDistanceBetweenCoords(pos, Config.BigBanks["paleto"]["thermite"][1]["x"], Config.BigBanks["paleto"]["thermite"][1]["y"], Config.BigBanks["paleto"]["thermite"][1]["z"], true)
+                    if dist < 1 then
+                        currentThermiteGate = Config.BigBanks["paleto"]["thermite"][1]["doorId"]
+                        if not requiredItemsShowed2 then
+                            requiredItemsShowed2 = true
+                            TriggerEvent('inventory:client:requiredItems', requiredItems2, true)
+                        end
+                    else
+                        currentThermiteGate = 0
+                        if requiredItemsShowed2 then
+                            requiredItemsShowed2 = false
+                            TriggerEvent('inventory:client:requiredItems', requiredItems2, false)
+                        end
+                    end
+                end
+            end
+            if not inRange then
+                Citizen.Wait(2500)
+            end
+        end
+        Citizen.Wait(1)
+    end
+end)
+
+RegisterNetEvent('prp-bankrobbery:UseBankcardA')
+AddEventHandler('prp-bankrobbery:UseBankcardA', function()
+    local ped = GetPlayerPed(-1)
+    local pos = GetEntityCoords(ped)
+    local dist = GetDistanceBetweenCoords(pos, Config.BigBanks["paleto"]["coords"]["x"], Config.BigBanks["paleto"]["coords"]["y"],Config.BigBanks["paleto"]["coords"]["z"])
+    if math.random(1, 100) <= 85 and not IsWearingHandshoes() then
+        TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
+    end
+    if dist < 1.5 then
+        PRPCore.Functions.TriggerCallback('prp-bankrobbery:server:isRobberyActive', function(isBusy)
+            if not isBusy then
+                if CurrentCops >= Config.MinimumPaletoPolice then
+                    if not Config.BigBanks["paleto"]["isOpened"] then 
+                        TriggerEvent('inventory:client:requiredItems', requiredItems, false)
+                        PRPCore.Functions.Progressbar("security_pass", "Validating keycards..", math.random(5000, 10000), false, true, {
+                            disableMovement = true,
+                            disableCarMovement = true,
+                            disableMouse = false,
+                            disableCombat = true,
+                        }, {
+                            animDict = "anim@gangops@facility@servers@",
+                            anim = "hotwire",
+                            flags = 16,
+                        }, {}, {}, function() -- Done
+                            StopAnimTask(GetPlayerPed(-1), "anim@gangops@facility@servers@", "hotwire", 1.0)
+                            TriggerServerEvent('prp-bankrobbery:server:setBankState', "paleto", true)
+                            TriggerServerEvent("PRPCore:Server:RemoveItem", "security_card_01", 1)
+                            local dCoords = vector3(-105.77, 6472.59, 31.81)
+                            TriggerServerEvent('nui_doorlock:server:UnlockDoorByCoords', dCoords)
+                            if not copsCalled then
+                                local s1, s2 = Citizen.InvokeNative(0x2EB41072B4C1E4C0, pos.x, pos.y, pos.z, Citizen.PointerValueInt(), Citizen.PointerValueInt())
+                                local street1 = GetStreetNameFromHashKey(s1)
+                                local street2 = GetStreetNameFromHashKey(s2)
+                                local streetLabel = street1
+                                if street2 ~= nil then 
+                                    streetLabel = streetLabel .. " " .. street2
+                                end
+                                if Config.BigBanks["paleto"]["alarm"] then
+                                    TriggerServerEvent("prp-bankrobbery:server:callCops", "paleto", 0, streetLabel, pos)
+                                    copsCalled = true
+                                end
+                            end
+                        end, function() -- Cancel
+                            StopAnimTask(GetPlayerPed(-1), "anim@gangops@facility@servers@", "hotwire", 1.0)
+                            PRPCore.Functions.Notify("Cancelled..", "error")
+                        end)
+                    else
+                        PRPCore.Functions.Notify("Looks like the bank is open already..", "error")
+                    end
+                else
+                    PRPCore.Functions.Notify("Not enough Police.. (5 req)", "error")
+                end
+            else
+                PRPCore.Functions.Notify("The lock is unbreakable, you can't enter.", "error", 5500)
+            end
+        end)
+    end 
+end)
+
+function OpenPaletoDoor()
+    local dCoords = vector3(-105.77, 6472.59, 31.81)
+    TriggerServerEvent('nui_doorlock:server:UnlockDoorByCoords', dCoords)
+    local object = GetClosestObjectOfType(Config.BigBanks["paleto"]["coords"]["x"], Config.BigBanks["paleto"]["coords"]["y"], Config.BigBanks["paleto"]["coords"]["z"], 5.0, Config.BigBanks["paleto"]["object"], false, false, false)
+    local timeOut = 10
+    local entHeading = Config.BigBanks["paleto"]["heading"].closed
+
+    if object ~= 0 then
+        Citizen.CreateThread(function()
+            while true do
+
+                if entHeading < Config.BigBanks["paleto"]["heading"].open then
+                    SetEntityHeading(object, entHeading + 10)
+                    entHeading = entHeading + 0.5
+                else
+                    break
+                end
+
+                Citizen.Wait(10)
+            end
+        end)
+    end
+end

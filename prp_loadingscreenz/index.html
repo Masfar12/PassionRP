@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Passion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <script type="text/javascript" src="js/text.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+</head>
+
+<body id="dvImage">
+    <h1 class="ml4">
+    </h1>
+    <img src="img/cursor.png" alt="cursor" id="cursor">
+
+    <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+                <img src="img/hudba.png" width="40px" height="40px">
+                <span></span>
+            </label>
+
+        <ul class="menu__box">
+
+            <div id="app-cover">
+                <div id="player">
+                    <div id="player-track">
+                        <div id="album-name"></div>
+                        <div id="track-name"></div>
+                        <div id="track-time">
+                            <div id="current-time"></div>
+                            <div id="track-length"></div>
+                        </div>
+                        <div id="s-area">
+                            <div id="ins-time"></div>
+                            <div id="s-hover"></div>
+                            <div id="seek-bar"></div>
+                        </div>
+                    </div>
+                    <div id="player-content">
+                        <div id="album-art">
+                            <img src="https://media.discordapp.net/attachments/686657111840522287/768491642252427280/150x150-transparent.png.f4e13a3e73be7ac6be9bd77852c0af04_copy.png" class="active" id="_1">
+                            <img src="https://media.discordapp.net/attachments/686657111840522287/768491642252427280/150x150-transparent.png.f4e13a3e73be7ac6be9bd77852c0af04_copy.png" id="_2">
+                            <img src="https://media.discordapp.net/attachments/686657111840522287/768491642252427280/150x150-transparent.png.f4e13a3e73be7ac6be9bd77852c0af04_copy.png" id="_3">
+                            <div id="buffer-box">Music...</div>
+                        </div>
+                        <div id="player-controls">
+                            <div class="control">
+                                <div class="button" id="play-previous">
+                                    <i class="fas fa-backward"></i>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <div class="button" id="play-pause-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <div class="button" id="play-next">
+                                    <i class="fas fa-forward"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ul>
+    </div>
+    <div class="loadbar">
+
+        <div class="progressBar"></div>
+    </div>
+
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+        function ffalse() {
+            return false;
+        }
+
+        function ftrue() {
+            return true;
+        }
+
+        document.onselectstart = new Function("return false");
+        if (window.sidebar) {
+            document.onmousedown = ffalse;
+            document.onclick = ftrue;
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).mousemove(function(e) {
+            $("#cursor").css({
+                left: e.pageX,
+                top: e.pageY
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        var images = ["bg1.png", "bg2.png", "bg3.png"];
+        $(function() {
+            var i = 0;
+            $("#dvImage").css("background-image", "url(img/" + images[i] + ")");
+            setInterval(function() {
+                i++;
+                if (i == images.length) {
+                    i = 0;
+                }
+                $("#dvImage").fadeOut("7000", function() {
+                    $(this).css("background-image", "url(img/" + images[i] + ")");
+                    $(this).fadeIn("7000");
+                });
+            }, 25000);
+        });
+    </script>
+</body>
+
+</html>

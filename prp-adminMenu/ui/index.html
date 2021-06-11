@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+    </head>
+    <body style="background-color: transparent;">
+        <div class="admin-wrapper" style="display: none;">
+            <div class="admin-header">
+                <div class="admin-header-text">
+                    <span class="admin-rich-text">Passion Gaming</span> - Admin Menu
+                </div>
+            </div>
+            <div class="admin-data">
+                <div style="padding-left: 1vw;"><span class="admin-rich-text">Selected Player - </span><span class="admin-player-selected">Unselected</span><span style="font-size: 1vw; font-weight: bold; padding-left: 1vw; padding-right: 1vw; color: #c20316;">//</span><span class="admin-rich-text">Online Players</span> - <span class="admin-player-count"></span></div>
+                <button class="admin-button btn btn-danger col-6" id="exitSpectate" type="button">Exit Spectate</button>
+                <button class="admin-button btn btn-secondary col-6" id="closeMenu" type="button">Close Menu</button>
+            </div>
+            <div class="admin-players">
+                <ul class="admin-player-list list-group"></ul>
+            </div>
+            <div class="admin-controls" style="display: none;">
+                <div class="container px-4">
+                    <div class="row gx-5">
+                        <button class="admin-button btn btn-secondary col-6" id="spectate" type="button">Spectate</button>
+                        <button class="admin-button btn btn-danger col-6" id="slay" type="button">Slay</button>
+                    </div>
+                </div>
+                <div class="container px-4">
+                    <div class="row gx-5">
+                        <button class="admin-button btn btn-secondary col-6" id="openinv" type="button">Open Inventory</button>
+                        <button class="admin-button btn btn-danger col-6" id="freeze" type="button">Freeze</button>
+                    </div>
+                </div>
+                <div class="container px-4">
+                    <div class="row gx-5">
+                        <button class="admin-button btn btn-secondary col-6" id="bring" type="button">Bring</button>
+                        <button class="admin-button btn btn-danger col-6" id="goto" type="button">Goto</button>
+                    </div>
+                </div>
+                <div class="container px-4">
+                    <div class="row gx-5">
+                        <button class="admin-button btn btn-secondary col-6" id="screenshot" type="button">Screenshot</button>
+                        <button class="admin-button btn btn-danger col-6" id="revive" type="button">Revive</button>
+                    </div>
+                </div>
+                <div class="container px-4">
+                    <div class="row gx-5">
+                        <button class="admin-button btn btn-primary col-6" id="unselect" type="button">Unselect Player</button>
+                        <button class="admin-button btn btn-danger col-6" id="menu" type="button">Clothing Menu</button>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-player-data" style="display: none;">
+                <div class="admin-rich-text" style="font-size: 1vw;">
+                    Player Data
+                    <div class="admin-data-text" id="player-name">Name: </div>
+                    <div class="admin-data-text" id="player-job">Job: </div>
+                    <div class="admin-data-text" id="player-cash">Cash: </div>
+                    <div class="admin-data-text" id="player-bank">Bank: </div>
+                </div>
+            </div>
+            <div class="admin-player-identifiers">
+
+            </div>
+            <div class="admin-main-controls">
+                <div class="container px-4">
+                    <div class="row gx-5">
+                        <button class="admin-button btn btn-danger col-4" id="godmode" type="button">Godmode</button>
+                        <button class="admin-button btn btn-secondary col-4" id="blips" type="button">Blips</button>
+                        <button class="admin-button btn btn-danger col-4" id="names" type="button">Names</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./script.js" type="text/javascript"></script>
+</html>

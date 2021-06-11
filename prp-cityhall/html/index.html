@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>FLX Cityhall</title>
+</head>
+    <body>
+        <div class="container">
+            <div class="cityhall-main-container">
+                <div class="cityhall-header">
+                    <h1>City of Los Santos</h1>
+                </div>
+
+                <div class="cityhall-option-blocks">
+                    <a class="cityhall-option-block identityButton" data-page="identity"><i class="fas fa-id-card"></i> <p>Identity</p></a>
+                    <a class="cityhall-option-block jobButton" data-page="job"><i class="fas fa-id-card-alt"></i> <p>JobCenter</p></a>
+                </div>
+
+                <div class="cityhall-identity-page">
+                    <div class="identity-page-blocks" id ="identity-page-blocksid">
+                        <!-- <div class="identity-page-block" data-type="rijbewijs" onmouseover="hoverDescription('rijbewijs')" onmouseout="hoverDescription('rijbewijs')"><p>Rijbewijs</p></div> -->
+                    </div>
+
+                    <div class="request-identity-button requestButton"></div>
+
+                    <div class="back-to-main"><p><i class="fas fa-times"></i></p></div>
+                </div>
+
+                <div class="cityhall-job-page">
+                    <div class="job-page-blocks">
+                        <div class="job-page-block" data-job="trucker"><i class="fas fa-truck-moving"></i> <p>Trucker</p></div>
+                        <div class="job-page-block" data-job="taxi"><i class="fas fa-taxi"></i> <p>Taxi</p></div>
+                        <div class="job-page-block" data-job="tow"><i class="fas fa-truck-loading"></i> <p>Towservice</p></div>
+                        <!-- <div class="job-page-block" data-job="reporter"><i class="fas fa-video"></i> <p>Newsanchor</p></div> -->
+                        <div class="job-page-block" data-job="garbage"><i class="fas fa-truck-moving"></i> <p>Garbage</p></div>
+                        <div class="job-page-block" data-job="lumberjack"><i class="fas fa-tree"></i> <p>Lumberjack</p></div>
+                        <!-- <div class="job-page-block" data-job="ecologist"><i class="fas fa-faucet"></i> <p>Ecologist</p></div> -->
+                        <div class="job-page-block" data-job="miner"><i class="fas fa-gem"></i> <p>Miner</p></div>
+                        <!-- <div class="job-page-block" data-job="farmer"><i class="fas fa-tractor"></i> <p>Farmer</p></div> -->
+                    </div>
+
+                    <div class="apply-job-button applyButton"><i class="fas fa-check-square"></i> <p>accept job</p></div>
+
+                    <div class="back-to-main"><p><i class="fas fa-times"></i></p></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./app.js"></script>
+</html>
